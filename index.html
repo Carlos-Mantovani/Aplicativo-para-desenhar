@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Site para desenho</title>
+</head>
+<body>
+    <section class="container">
+        <div id="barra-de-ferramentas">
+            <h1>Desenhe</h1>
+            <label for="traco">Traço</label>
+            <input id="traco" name="traco" type="color">
+            <label for="tamanho-pincel">Tamanho do pincel</label>
+            <input id="tamanho-pincel" name="tamanho-pincel" type="number" value="5">
+            <button id="limpar">Limpar</button>
+        </div>
+        <div class="tela-desenho">
+            <canvas id="tela-desenho"></canvas>
+        </div>
+    </section>
+    <script src="script.js"></script>
+</body>
+</html>
