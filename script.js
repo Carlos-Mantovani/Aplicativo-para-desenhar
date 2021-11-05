@@ -1,15 +1,15 @@
-const canvas = document.getElementById('tela-desenho')
+const canvas = document.getElementById('canvas')
 const toolbar = document.getElementById('barra-de-ferramentas')
-const ctx = canvas.getContex('2d')
+const ctx = canvas.getContext('2d')
 
 const canvasOffsetX = canvas.offsetLeft
 const canvasOffsetY = canvas.offsetTop
 
 canvas.width = window.innerWidth - canvasOffsetX
-canvas.hidden = window.innerHeight -canvasOffsetY
+canvas.height = window.innerHeight -canvasOffsetY
 
 let isPainting = false
-let lineWith = 5
+let lineWidth = 5
 let startX
 let startY
 
@@ -25,7 +25,32 @@ toolbar.addEventListener('change', event => {
     }
 
     if(event.target.id === 'tamanho-pincel') {
-        lineWith = event.target.value
+        lineWidth = event.target.value
     }
 })
 
+const draw = (event) => {
+    if(!isPainting){
+        return
+    }
+
+    ctx.lineWidth = lineWidth
+    ctx.lineCap = 'round'
+
+    ctx.lineTo(event.clientX - canvasOffsetX, event.clientY)
+    ctx.stroke()
+}
+
+canvas.addEventListener('mousedown', (event) => {
+    isPainting = true;
+    startX = event.clientX
+    startY = event.clientY
+})
+
+canvas.addEventListener('mouseup', (event) => {
+    isPainting = false;
+    ctx.stroke()
+    ctx.beginPath()
+})
+
+canvas.addEventListener('mousemove', draw)
